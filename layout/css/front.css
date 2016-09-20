@@ -11,3 +11,9 @@
     margin: 5px 0 5px 0;
     
 }
+.header{
+    background-image: url("../../images/cover.png");
+    margin: 0;
+    width:100%;
+    height: auto;
+}
