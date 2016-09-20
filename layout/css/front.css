@@ -3,5 +3,11 @@
 }
 .login{
     width:400px;
-    margin: 50px auto;
+    margin: 100px auto;
+    background-color:#cecece;
+    padding: 15px;
+}
+.input[type='email'],input[type='password']{
+    margin: 5px 0 5px 0;
+    
 }
