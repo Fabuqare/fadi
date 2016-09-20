@@ -1,18 +1,23 @@
 
 <html>
     <head>
-         <title>Dynamic Website</title>
-         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
-        <link rel="stylesheet" href="layout/css/front.css">
+        <title>Dynamic Website</title>
+      
     
     </head>
 
     <body>
         
-
+<?php
+        
+session_start();
+        
+?>
         
     <?php
-            include'includes/config.php';
+            
+            include'init.php';
+        
 
     ?>       
         
@@ -26,10 +31,16 @@
             $stmt= $con ->prepare('SELECT email , password FROM users WHERE email=? AND password=?');
             $stmt ->execute(array($email,$hashpass));
         
-            
+            $row = $stmt->fetch();
             $count = $stmt->rowCount();
             
-           echo $count;
+           if($count>0){
+               $_SESSION['email']=$email;
+               $_SESSION['password']=$password;
+               header('Location: dashboard.php');
+               exit();
+                   
+           }
             
             
         }
@@ -60,8 +71,6 @@
         
         
         
-        
-        
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  
     </body>
 </html>
